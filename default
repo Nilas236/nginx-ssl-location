@@ -1,0 +1,27 @@
+server {
+    listen 80;
+    server_name example.com www.example.com;
+
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen 443 ssl;
+    server_name example.com www.example.com;
+
+    ssl_certificate /etc/nginx/ssl/nginx.crt;
+    ssl_certificate_key /etc/nginx/ssl/nginx.key;
+
+    ssl_prefer_server_ciphers on;
+
+    root /var/www/html;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+	location /status {
+        return 200 "Server is working\n";
+        add_header Content-Type text/plain;
+    }
+}
