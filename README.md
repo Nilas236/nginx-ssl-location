@@ -25,3 +25,9 @@ server {
 }
 
 ```
+
+Создание символическую ссылку в sites-enabled
+
+`ln -s /etc/nginx/sites-available/example.com.conf /etc/nginx/sites-enabled/example.com.conf` - если не будет файл не будет работать 
+
+
